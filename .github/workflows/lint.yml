@@ -1,0 +1,22 @@
+name: lint
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Syntaxe des scripts shell
+        run: |
+          sudo apt-get update -y && sudo apt-get install -y shellcheck
+          for f in pki/*.sh deploy/*.sh tests/*.sh; do bash -n "$f"; done
+          shellcheck -S warning pki/*.sh deploy/*.sh tests/*.sh || true
+      - name: Compilation Python du module Odoo
+        run: python -m compileall -q odoo/addons/odoo_mfa_certificate
+      - name: XML bien formé
+        run: |
+          sudo apt-get install -y libxml2-utils
+          xmllint --noout odoo/addons/odoo_mfa_certificate/views/*.xml

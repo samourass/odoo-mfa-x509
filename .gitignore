@@ -1,0 +1,22 @@
+# Secrets et matériel cryptographique : ne JAMAIS les versionner
+.env
+odoo/config/odoo.conf
+pki/ca/ca.key
+pki/ca/index.txt*
+pki/ca/serial*
+pki/ca/crlnumber*
+pki/ca/newcerts/
+pki/ca/crl/
+pki/ca/ca.crt
+pki/ca/openssl-ca.cnf
+pki/server/
+pki/clients/
+*.key
+*.p12
+*.pfx
+*.pem
+*.csr
+# Divers
+__pycache__/
+*.pyc
+.vscode/

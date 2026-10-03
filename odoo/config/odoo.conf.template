@@ -1,0 +1,14 @@
+[options]
+; Généré par deploy/10-env.sh -> odoo/config/odoo.conf (ignoré par Git)
+addons_path = /mnt/extra-addons
+data_dir = /var/lib/odoo
+db_host = odoo-db
+db_port = 5432
+db_user = odoo
+db_password = __DB_PASSWORD__
+db_name = odoo_mfa
+dbfilter = ^odoo_mfa$
+list_db = False
+admin_passwd = __ADMIN_PASSWD__
+proxy_mode = True
+log_level = info

@@ -1,0 +1,38 @@
+# Configuration de la CA interne « Odoo MFA Root CA »
+# Les scripts s'exécutent avec pki/ca comme dossier courant.
+[ca]
+default_ca = CA_default
+
+[CA_default]
+dir              = .
+database         = $dir/index.txt
+serial           = $dir/serial
+crlnumber        = $dir/crlnumber
+new_certs_dir    = $dir/newcerts
+certificate      = $dir/ca.crt
+private_key      = $dir/ca.key
+default_md       = sha256
+default_days     = 365
+default_crl_days = 30
+policy           = policy_any
+unique_subject   = no
+copy_extensions  = none
+
+[policy_any]
+countryName            = optional
+organizationName       = optional
+organizationalUnitName = optional
+commonName             = supplied
+emailAddress           = optional
+
+[req]
+distinguished_name = req_dn
+x509_extensions    = v3_ca
+
+[req_dn]
+commonName = Common Name
+
+[v3_ca]
+subjectKeyIdentifier = hash
+basicConstraints     = critical,CA:true
+keyUsage             = critical,keyCertSign,cRLSign
